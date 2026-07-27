@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X & O Online Game - Yousef</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- پشکا لۆگین و تۆمارکرنێ -->
+    <div id="auth-container" class="card">
+        <h2>چوونە ژوورێ / تۆمارکرن</h2>
+        <input type="text" id="username" placeholder="ناوی بەکارهێنەر (Username)">
+        <input type="password" id="password" placeholder="پاسوورد (Password)">
+        <button onclick="login()">چوونە ژوورێ</button>
+        <button onclick="signup()">تۆمارکرن</button>
+    </div>
+
+    <!-- پشکا یاریێ -->
+    <div id="game-container" class="card" style="display: none;">
+        <h2>سڵاو، <span id="profile-name"></span> | ID: <span id="profile-id"></span></h2>
+        
+        <div class="mode-select">
+            <button onclick="startAIGame()">یاری ل گەل ڕۆبۆتێ AI</button>
+            <button onclick="startOnlineGame()">یارییا ئنلاین (ب ID)</button>
+        </div>
+
+        <!-- تختی یارییا X و O -->
+        <div id="board" class="board" style="display: none;">
+            <div class="cell" onclick="makeMove(0)"></div>
+            <div class="cell" onclick="makeMove(1)"></div>
+            <div class="cell" onclick="makeMove(2)"></div>
+            <div class="cell" onclick="makeMove(3)"></div>
+            <div class="cell" onclick="makeMove(4)"></div>
+            <div class="cell" onclick="makeMove(5)"></div>
+            <div class="cell" onclick="makeMove(6)"></div>
+            <div class="cell" onclick="makeMove(7)"></div>
+            <div class="cell" onclick="makeMove(8)"></div>
+        </div>
+        <p id="status"></p>
+    </div>
+
+    <!-- لەب (Leaderboard & Profile) ل بنێ شاشەی -->
+    <footer id="bottom-bar">
+        <div class="profile-info">پڕۆفایلا من: <span id="footer-user">-</span></div>
+        <div class="leaderboard">نمرە: <span id="footer-score">0</span></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
