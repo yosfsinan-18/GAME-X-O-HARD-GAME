@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1124">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Sonic VIP — پانێڵی بەڕێوەبردن</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="admin.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="admin-body">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- LOGIN -->
+  <section class="login-wrap" id="loginView">
+    <div class="login-card">
+      <div class="brand-mark" style="margin: 0 auto 16px;">
+        <svg viewBox="0 0 40 40" aria-hidden="true">
+          <defs><linearGradient id="bm" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#7b73ff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+          <circle cx="20" cy="20" r="18" fill="url(#bm)"/>
+          <text x="20" y="26" text-anchor="middle" font-family="Orbitron" font-weight="900" font-size="18" fill="#fff">S</text>
+        </svg>
+      </div>
+      <h1>پانێڵی بەڕێوەبردن</h1>
+      <p>تکایە وشەی نهێنی بنووسە بۆ چوونە ژوورەوە.</p>
+      <form id="loginForm" autocomplete="off">
+        <div class="field">
+          <label for="pw">وشەی نهێنی</label>
+          <div class="pw-wrap">
+            <input id="pw" type="password" required autocomplete="current-password" placeholder="••••••••" dir="ltr" spellcheck="false">
+            <button type="button" class="pw-toggle" id="pwToggle" title="پیشاندان/شاردنەوە">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10zm0-2a3 3 0 100-6 3 3 0 000 6z"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="btn primary big" type="submit" style="width:100%">چوونە ژوورەوە</button>
+        <p class="hint" id="loginHint">وشەی نهێنی بنەڕەتی: <code>sonic2026</code> (دواتر دەتوانیت بیگۆڕیت)</p>
+      </form>
+      <a class="back" href="/">← گەڕانەوە بۆ سایت</a>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="dash" id="dashView" hidden>
+    <header class="dash-head">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="18" fill="url(#bm)"/>
+            <text x="20" y="26" text-anchor="middle" font-family="Orbitron" font-weight="900" font-size="18" fill="#fff">S</text>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-name">SONIC <span>ADMIN</span></div>
+          <div class="dash-sub">بەڕێوەبردنی هەموو وەشانەکان لە یەک شوێن</div>
+        </div>
+      </div>
+      <div class="dash-actions">
+        <a class="btn ghost" href="/" target="_blank" rel="noopener">پێشبینی سایت ↗</a>
+        <button class="btn ghost" id="logoutBtn">دەرچوون</button>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <button class="btn primary" id="addBtn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+        زیادکردنی وەشانێکی نوێ
+      </button>
+      <button class="btn ghost" id="exportBtn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+        داگرتنی هەموو فایلەکان (JSON)
+      </button>
+      <label class="btn ghost" for="importFile">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21V9m0 0L8 13m4-4l4 4M5 3h14"/></svg>
+        هاوردنی فایلی JSON
+      </label>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <button class="btn ghost" id="changePwBtn">گۆڕینی وشەی نهێنی</button>
+    </div>
+
+    <section class="stats-edit">
+      <h2>ستاتیستیکی سەرەکی</h2>
+      <div class="stats-grid">
+        <div class="field"><label>دابەزاندن</label><input id="stat_downloads" type="text" placeholder="12,500+"></div>
+        <div class="field"><label>بەکارهێنەر</label><input id="stat_users" type="text" placeholder="3,800+"></div>
+        <div class="field"><label>هەڵسەنگاندن</label><input id="stat_rating" type="text" placeholder="4.9"></div>
+        <div class="field"><label>دوایین نوێکارییە</label><input id="stat_lastUpdate" type="date"></div>
+      </div>
+      <button class="btn primary" id="saveStatsBtn">پاشەکەوتکردنی ستاتیستیک</button>
+    </section>
+
+    <section class="releases-list" id="filesPanel">
+      <div class="rl-head">
+        <h2>فایلە بارکراوەکان</h2>
+        <label class="btn primary" for="bulkUpload">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 13v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6h2v6h10v-6h2zM12 3l5 5h-3v6h-4V8H7l5-5z"/></svg>
+          بارکردنی فایلێکی نوێ
+        </label>
+        <input type="file" id="bulkUpload" hidden>
+      </div>
+      <div class="upload-progress" id="bulkProgress" hidden style="margin-bottom:14px">
+        <div class="bar"><i></i></div>
+        <span class="pct">0%</span>
+      </div>
+      <div class="table-wrap">
+        <table class="rl-table" id="filesTable">
+          <thead>
+            <tr><th>ناوی فایل</th><th>قەبارە</th><th>بەروار</th><th>کردارەکان</th></tr>
+          </thead>
+          <tbody id="filesBody"></tbody>
+        </table>
+        <div class="rl-empty" id="filesEmpty" hidden>هیچ فایلێک نییە. دوگمەی «بارکردن» بۆ زیادکردنی فایل.</div>
+      </div>
+    </section>
+
+    <section class="releases-list">
+      <div class="rl-head">
+        <h2>وەشانەکان</h2>
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.41-1.41-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"/></svg>
+          <input id="adminSearch" type="text" placeholder="گەڕان…">
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="rl-table" id="releasesTable">
+          <thead>
+            <tr>
+              <th>ناوی وەشان</th>
+              <th>ناوچە</th>
+              <th>وەشان</th>
+              <th>قەبارە</th>
+              <th>بەروار</th>
+              <th>گرنگ</th>
+              <th>کردارەکان</th>
+            </tr>
+          </thead>
+          <tbody id="rlBody"></tbody>
+        </table>
+        <div class="rl-empty" id="rlEmpty" hidden>هیچ وەشانێک نییە. دوگمەی «زیادکردن» کلیک بکە بۆ دەستپێکردن.</div>
+      </div>
+    </section>
+
+    <p class="footnote">
+      هەموو زانیاریەکان لە یەک فایلدا پاشەکەوت دەکرێن (JSON). دوگمەی «داگرتنی هەموو فایلەکان» دەتباتە لای فایلێکی تەواو کە دەتوانیت پاشەکەوتی بکەیت یان بیگوازیتەوە.
+    </p>
+  </section>
+
+  <!-- EDIT DIALOG -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card">
+      <header class="modal-head">
+        <h2 id="modalTitle">زیادکردنی وەشانێکی نوێ</h2>
+        <button class="modal-close" id="modalClose" aria-label="داخستن">×</button>
+      </header>
+      <form id="editForm" class="form-grid">
+        <input type="hidden" id="f_id">
+        <div class="field"><label>ناوی سەرەکی *</label><input id="f_title" required placeholder="PUBG MOBILE KR"></div>
+        <div class="field"><label>ژێرناو</label><input id="f_subtitle" placeholder="وەشانی کۆریا"></div>
+        <div class="field">
+          <label>ناوچە *</label>
+          <select id="f_region" required>
+            <option value="KR">KR — کۆریا</option>
+            <option value="VNG">VNG — ڤێتنام</option>
+            <option value="TW">TW — تایوان</option>
+            <option value="GLOBAL">GLOBAL — جیهانی</option>
+            <option value="BGMI">BGMI — هیند</option>
+            <option value="LITE">LITE — سووک</option>
+          </select>
+        </div>
+        <div class="field"><label>ژمارەی وەشان *</label><input id="f_version" required placeholder="3.4.0"></div>
+        <div class="field"><label>قەبارە *</label><input id="f_size" required placeholder="1.2 GB"></div>
+        <div class="field"><label>بەرواری بڵاوبوونەوە</label><input id="f_date" type="date"></div>
+        <div class="field"><label>پێویستی iOS</label><input id="f_ios" placeholder="iOS 13+" value="iOS 13+"></div>
+        <div class="field full">
+          <label>لینکی دابەزاندن (URL یان ڕێچکەی فایل) *</label>
+          <input id="f_file" required placeholder="downloads/PUBG_KR.ipa یان https://t.me/...">
+          <small class="hint">دەتوانیت لێرە لینک دابنێیت، یان لە خوارەوە فایلێک بار بکەیت تا خۆکارانە جێگیر بکرێت.</small>
+        </div>
+        <div class="field full">
+          <label>یان فایل لێرە بار بکە (IPA / ZIP / هتد)</label>
+          <div class="upload-box" id="uploadBox">
+            <input type="file" id="f_upload" accept=".ipa,.zip,.dmg,application/octet-stream" hidden>
+            <button type="button" class="btn ghost" id="uploadPick">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 13v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6h2v6h10v-6h2zM12 3l5 5h-3v6h-4V8H7l5-5z"/></svg>
+              هەڵبژاردنی فایل
+            </button>
+            <span class="upload-info" id="uploadInfo">هیچ فایلێک هەڵنەبژێردراوە</span>
+            <div class="upload-progress" id="uploadProgress" hidden>
+              <div class="bar"><i></i></div>
+              <span class="pct">0%</span>
+            </div>
+          </div>
+          <small class="hint">فایلەکە خۆکارانە دەخرێتە ناو پۆشەی <code>downloads/</code> و خانەی «قەبارە» و «لینکی دابەزاندن» بۆت پڕ دەکرێتەوە.</small>
+        </div>
+        <div class="field full"><label>وەسف</label><textarea id="f_description" rows="3" placeholder="وردەکاری کورت لەبارەی ئەم وەشانە…"></textarea></div>
+        <div class="field"><label>تاگەکان (بە کۆما جیا کراون)</label><input id="f_tags" placeholder="نوێ, VIP"></div>
+        <div class="field check">
+          <label class="checkrow"><input id="f_featured" type="checkbox"> پیشاندانی وەک «وەشانی گرنگ»</label>
+        </div>
+        <div class="form-actions full">
+          <button class="btn ghost" type="button" id="cancelBtn">پاشگەزبوونەوە</button>
+          <button class="btn primary" type="submit">پاشەکەوتکردن</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CHANGE PASSWORD DIALOG -->
+  <div class="modal" id="pwModal" hidden>
+    <div class="modal-card sm">
+      <header class="modal-head">
+        <h2>گۆڕینی وشەی نهێنی</h2>
+        <button class="modal-close" id="pwClose" aria-label="داخستن">×</button>
+      </header>
+      <form id="pwForm" class="form-grid">
+        <div class="field full"><label>وشەی نهێنی نوێ</label><input id="pw_new" type="password" required minlength="4"></div>
+        <div class="field full"><label>دووبارە بنووسە</label><input id="pw_confirm" type="password" required minlength="4"></div>
+        <p class="hint" id="pwHint"></p>
+        <div class="form-actions full">
+          <button class="btn ghost" type="button" id="pwCancel">پاشگەزبوونەوە</button>
+          <button class="btn primary" type="submit">پاشەکەوتکردن</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="admin.js"></script>
+</body>
+
+</html>
